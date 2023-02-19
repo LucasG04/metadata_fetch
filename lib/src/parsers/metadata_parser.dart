@@ -33,7 +33,8 @@ class MetadataParser {
     final _url = output.url ?? url;
     final image = output.image;
     if (_url != null && image != null) {
-      output.image = Uri.parse(_url).resolve(image).toString();
+      final imageWithoutWhitespace = image.replaceAll(RegExp(r'\s'), '');
+      output.image = Uri.parse(_url).resolve(imageWithoutWhitespace).toString();
     }
 
     return output;
