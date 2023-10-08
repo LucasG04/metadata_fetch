@@ -30,6 +30,7 @@ class MetadataParser {
     }
     // If the parsers did not extract a URL from the metadata, use the given
     // url, if available. This is used to attempt to resolve relative images.
+    output.url = _sanitizeUrl(output.url, url);
     final _url = output.url ?? url;
     final image = output.image;
     if (_url != null && image != null) {
@@ -54,5 +55,20 @@ class MetadataParser {
 
   static Metadata twitterCard(Document? document) {
     return TwitterCardParser(document).parse();
+  }
+
+  static String? _sanitizeUrl(String? url, String? defaultUrl) {
+    if (url == null && defaultUrl == null) {
+      return null;
+    }
+
+    // when urls start with //, https: will be added
+    if (url != null && url.startsWith('//')) {
+      return defaultUrl != null && defaultUrl.startsWith('//')
+          ? 'https:$defaultUrl'
+          : 'https:$url';
+    }
+
+    return url;
   }
 }

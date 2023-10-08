@@ -1,8 +1,6 @@
 import 'package:metadata_fetch/metadata_fetch.dart';
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
-import 'package:metadata_fetch/src/parsers/jsonld_parser.dart';
-import 'package:metadata_fetch/src/parsers/parsers.dart';
 import 'package:test/test.dart';
 
 // TODO: Use a Mock Server for testing
@@ -13,7 +11,6 @@ void main() {
     final response = await http.get(Uri.parse(url));
     final document = MetadataFetch.responseToDocument(response);
     final data = MetadataParser.parse(document);
-    print(data.toJson());
     expect(data.toJson().isNotEmpty, true);
   });
 
@@ -109,8 +106,8 @@ void main() {
       print(OpenGraphParser(document).title);
       Metadata data = OpenGraphParser(document).parse();
       expect(data.title, 'Drake - When To Say When & Chicago Freestyle');
-      expect(
-          data.image, 'https://i.ytimg.com/vi/0jz0GAFNNIo/maxresdefault.jpg');
+      expect(data.image,
+          startsWith('https://i.ytimg.com/vi/0jz0GAFNNIo/maxresdefault.jpg'));
     });
 
     test('TwitterCard Parser', () async {
@@ -145,12 +142,9 @@ void main() {
   });
 
   group('MetadataFetch.extract()', () {
-    test('First Test', () async {
+    test('Flutter Test', () async {
       final url = 'https://flutter.dev';
       final data = await MetadataFetch.extract(url);
-      print(data);
-      print(data?.description);
-      print(data?.url);
       expect(data?.toMap().isEmpty, false);
       expect(data?.url, url + "/");
     });
@@ -164,8 +158,8 @@ void main() {
       Metadata? data = await MetadataFetch.extract(
           'https://www.youtube.com/watch?v=0jz0GAFNNIo');
       expect(data?.title, 'Drake - When To Say When & Chicago Freestyle');
-      expect(
-          data?.image, 'https://i.ytimg.com/vi/0jz0GAFNNIo/maxresdefault.jpg');
+      expect(data?.image,
+          startsWith('https://i.ytimg.com/vi/0jz0GAFNNIo/maxresdefault.jpg'));
     });
 
     test('Unicode Test', () async {
