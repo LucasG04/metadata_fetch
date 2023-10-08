@@ -1,5 +1,18 @@
+## 0.4.3
+
+- Updates dependencies:
+  - `http` from `0.13.3` to `1.1.0`
+  - `string_validator` from `0.3.0` to `1.0.0`
+  - `html` from `0.15.0` to `0.15.4`
+- Fixes case where `//` is a valid start of a url
+
+## 0.4.2
+
+- removes whitespace in base64 images
+
 ## 0.4.1
-- Improve Documentation 
+
+- Improve Documentation
 
 ## 0.4.0
 
