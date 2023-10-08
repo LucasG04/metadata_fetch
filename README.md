@@ -1,8 +1,18 @@
 # Metadata Fetch
+
 A dart library for extracting metadata in web pages. Supports OpenGraph, Meta, Twitter Cards, and Structured Data (Json-LD)
 
 Available on Pub Dev:
-[Pub](https://pub.dev/packages/metadata_fetch)
+[pub.dev/packages/metadata_fetch](https://pub.dev/packages/metadata_fetch)
+
+To use this repository, add it as git dependency in your `pubspec.yaml` file:
+
+```yaml
+metadata_fetch:
+  git:
+    url: https://github.com/LucasG04/metadata_fetch.git
+    ref: master
+```
 
 ## Metadata Structure
 
@@ -16,7 +26,6 @@ Metadata:
 
 ## Usage
 
-
 ### Extract Metadata for a given URL
 
 ```dart
@@ -26,7 +35,7 @@ main() async {
   final myURL = 'https://flutter.dev';
 
   // Use the `MetadataFetch.extract()` function to fetch data from the url
-  var data = await MetadataFetch.extract(myURL); 
+  var data = await MetadataFetch.extract(myURL);
 
   print(data.title) // Flutter - Beautiful native apps in record time
 
@@ -47,7 +56,6 @@ main() async {
 #### Get aggregated Metadata from a document
 
 This method prioritizes Open Graph data, followed by Twitter Card, JSON-LD and finally falls back to HTML metadata.
-
 
 ```dart
 import 'package:metadata_fetch/metadata_fetch.dart';
@@ -111,7 +119,7 @@ void main () async {
 
 #### Provide a fallback url when manually parsing
 
-If the parsers cannot extract a URL from the document, you may optionally provide a URL in `MetadataFetch.parse()`. 
+If the parsers cannot extract a URL from the document, you may optionally provide a URL in `MetadataFetch.parse()`.
 
 This URL will be added in the final `Metadata` structure, and is used to resolve images with relative URLs (non-absolute URLs).
 
@@ -139,22 +147,16 @@ void main () async {
 
 ```
 
-
-
-
-
-
-
 ## Credit
-This library is inspired by [open_graph_parser](https://github.com/Patte1808/open_graph_parser). 
+
+This library is inspired by [open_graph_parser](https://github.com/Patte1808/open_graph_parser).
 However this one tries to be more general.
 
-
 ## Roadmap
+
 - Weighted or Preferred Metadata. Can assign custom weights for each parser to provide a fallback priority sytem
 - Improve Documentation
 
-
 ## Questions, Bugs, and Feature Requests
-Please forward all queries about this project to the [issue tracker](https://github.com/jg-l/metadata_fetch/issues).
 
+Please forward all queries about this project to the [issue tracker](https://github.com/jg-l/metadata_fetch/issues).
