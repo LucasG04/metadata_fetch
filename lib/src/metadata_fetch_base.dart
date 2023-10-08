@@ -36,7 +36,7 @@ class MetadataFetch {
       return defaultOutput;
     }
 
-    final data = _extractMetadata(document);
+    final data = _extractMetadata(document, url: url);
     if (data == null) {
       return defaultOutput;
     }

@@ -2,7 +2,6 @@ import 'package:html/dom.dart';
 import 'package:metadata_fetch/metadata_fetch.dart';
 import 'package:metadata_fetch/src/utils/util.dart';
 
-import 'base_parser.dart';
 
 /// Takes a [http.Document] and parses [Metadata] from [<meta property='twitter:*'>] tags
 class TwitterCardParser with BaseMetadataParser {
