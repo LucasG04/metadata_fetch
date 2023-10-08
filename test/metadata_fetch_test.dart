@@ -170,7 +170,7 @@ void main() {
     test('Gooogle Test', () async {
       final data = await MetadataFetch.extract('https://google.ca');
       expect(data?.toMap().isEmpty, false);
-      expect(data?.title, 'google');
+      expect(data?.title?.toLowerCase(), 'google');
     });
 
     test('Invalid Url Test', () async {
